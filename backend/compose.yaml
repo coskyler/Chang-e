@@ -27,7 +27,7 @@ services:
     env_file: .env
     restart: unless-stopped
     volumes:
-      - stockadvisor:/var/lib/postgresql/data
+      - stockadvisor:/var/lib/postgresql 
       - ./schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U app -d stockadvisor_db"]
