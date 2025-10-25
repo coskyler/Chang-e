@@ -15,7 +15,7 @@ const TotalPosition = ({ totalValue = 0, totalChange = 0 }) => {
 
     return (
         <div className="total-position">
-            <div className="total-value">
+            <div className="total-value text-3xl">
                 ${formattedValue}
             </div>
             <div className="total-change" style={{ color: changeColor }}>

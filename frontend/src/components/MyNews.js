@@ -31,7 +31,7 @@ const MyNews = () => {
     ];
 
     return (
-        <div className="news-container">
+        <div className="news-container full-width">
             {newsItems.map((item) => (
                 <NewsItem
                     key={item.id}

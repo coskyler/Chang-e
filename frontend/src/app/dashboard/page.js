@@ -3,15 +3,21 @@ import MyNews from "@/components/MyNews";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            This is the dashboard
-            <PositionSummary />
-            <MyNews />
-          </h1>
-        </div>
+    <div className="min-h-screen bg-zinc-50 font-sans dark:bg-black">
+      <main className="min-h-screen w-full bg-white dark:bg-black">
+        <h1 className="text-3xl font-semibold text-black dark:text-zinc-50">
+          Portfolio Dashboard</h1>
+          <div className="flex flex-col md:flex-row gap-6 w-full">
+            {/* Left column - Position Summary (1/3) */}
+            <div className="w-full md:w-1/3">
+              <PositionSummary />
+            </div>
+
+            {/* Right column - News (2/3) */}
+            <div className="w-full md:w-2/3 border border-red-300">
+              <MyNews />
+            </div>
+          </div>
       </main>
     </div>
   );
