@@ -4,7 +4,7 @@ import PositionItem from './PositionItem';
 const PositionList = ({ positions }) => {
     return (
         <div className="position-list">
-            <h2>Your Positions</h2>
+            <h2 className='text-3xl'>Your Positions</h2>
             <div className="position-grid">
                 {positions && positions.map((position) => (
                     <PositionItem

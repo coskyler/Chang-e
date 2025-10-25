@@ -7,9 +7,9 @@ const PositionItem = ({ symbol, value, shares, averagePrice }) => {
     const isPositiveChange = priceChange >= 0;
 
     return (
-        <div className="bg-gray-800 py-2 px-4 rounded-lg position-item mb-2" style={{ display: 'flex', flexDirection: 'column', gap: '0px'}}>
+        <div className="bg-slate-800 py-2 px-4 rounded-lg position-item mb-2" style={{ display: 'flex', flexDirection: 'column', gap: '0px'}}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div className="stock-symbol">{symbol}</div>
+                <div className="stock-symbol text-xl font-bold">{symbol}</div>
                 <div className="position-value">${value.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
             </div>
 

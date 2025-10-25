@@ -42,8 +42,8 @@ const PositionSummary = () => {
     const totalChange = totalValue - totalInvested;
 
     return (
-        <div className="position-summary">
-            <h1>Portfolio Summary</h1>
+        <div className="position-summary bg-gray-900 rounded-lg py-4 px-4">
+            <h1 className='text-3xl'>Portfolio Balance</h1>
             <TotalPosition 
                 totalValue={totalValue} 
                 totalChange={totalChange}
