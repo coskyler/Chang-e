@@ -24,3 +24,27 @@
     scrollbar-color: theme('colors.neutral.800') transparent;
   }
 }
+
+
+/* Position Item */
+.position-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.position-value {
+  font-weight: bold;
+}
+
+.value-change {
+  font-weight: bold;
+}
+
+.value-change.positive {
+  color: theme('colors.green.500');
+}
+
+.value-change.negative {
+  color: theme('colors.red.500');
+}

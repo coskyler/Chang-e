@@ -19,7 +19,7 @@ const TotalPosition = ({ totalValue = 0, totalChange = 0 }) => {
                 ${formattedValue}
             </div>
             <div className="total-change" style={{ color: changeColor }}>
-                {isPositive ? '+' : ''}-${formattedChange}
+                {isPositive ? '+' : '-'}${formattedChange}
             </div>
         </div>
     );

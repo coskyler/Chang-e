@@ -1,5 +1,5 @@
 import React from 'react';
-// import './PositionItem.css';
+import '../app/globals.css'
 
 const PositionItem = ({ symbol, value, shares, averagePrice }) => {
     const currentPrice = value / shares;
@@ -7,16 +7,22 @@ const PositionItem = ({ symbol, value, shares, averagePrice }) => {
     const isPositiveChange = priceChange >= 0;
 
     return (
-        <div className="position-item">
-            <div className="stock-symbol">{symbol}</div>
-            <div className="position-value">${value.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
-            <div className="position-shares">{shares} shares</div>
-            <div className="position-avg-price">Avg: ${averagePrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
-            <div className={`value-change ${isPositiveChange ? 'positive' : 'negative'}`}>
-                {isPositiveChange ? '+' : ''}{priceChange.toFixed(2)}%
+        <div className="bg-gray-800 py-2 px-4 rounded-lg position-item mb-2" style={{ display: 'flex', flexDirection: 'column', gap: '0px'}}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="stock-symbol">{symbol}</div>
+                <div className="position-value">${value.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <div className={`value-change ${isPositiveChange ? 'positive' : 'negative'}`}>
+                    {isPositiveChange ? '+' : ''}{priceChange.toFixed(2)}%
+                </div>
             </div>
         </div>
     );
 };
+// Took out shares and average price for now
+// <div className="position-shares">{shares} shares</div>
+// <div className="position-avg-price">Avg: ${averagePrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
 
 export default PositionItem;
