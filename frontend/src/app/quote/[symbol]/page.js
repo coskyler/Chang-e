@@ -45,7 +45,7 @@ export default function StockPage() {
                 <StockDetail {...test_stats} />
               </div>
 
-              <TradePanel/>
+              <TradePanel price={100.344} symbol="AAPL"/>
             </div>
             <AnalysisPanel/>
           </div>
