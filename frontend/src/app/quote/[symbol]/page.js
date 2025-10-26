@@ -1,9 +1,11 @@
 "use client";
 
 import Navbar from "@/components/navbar";
+import AnalysisPanel from "@/components/quote/AnalysisPanel";
 import StockChart from "@/components/quote/StockChart";
 import StockDetail from "@/components/quote/StockDetail";
 import StockGraph from "@/components/quote/StockGraph";
+import TradePanel from "@/components/quote/TradePanel";
 
 export default function StockPage() {
   const test_stats = {
@@ -29,16 +31,23 @@ export default function StockPage() {
           {test_stats.symbol} Overview
         </h1>
 
-        <div className="flex flex-col md:flex-row gap-6 w-full ">
+        <div className="flex gap-3 w-full">
           {/* Left 1/2: Graph placeholder */}
-          <div className="bg-neutral-900/75 rounded-lg p-4 border border-neutral-800">
+          <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 max-w-[50vw] overflow-hidden">
             <StockChart />
           </div>
 
           {/* Right 1/2: Stock details */}
-          <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800">
-            {/* assuming StockDetail accepts these props and renders the view */}
-            <StockDetail {...test_stats} />
+          <div className="flex flex-col w-full gap-2">
+            <div className="flex gap-2 w-full">
+              <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800">
+                {/* assuming StockDetail accepts these props and renders the view */}
+                <StockDetail {...test_stats} />
+              </div>
+
+              <TradePanel/>
+            </div>
+            <AnalysisPanel/>
           </div>
         </div>
         <div className="w-full">

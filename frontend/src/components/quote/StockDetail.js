@@ -28,7 +28,7 @@ const StockDetail = ({
 }) => {
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-3">{symbol}</h2>
+      <h2 className="text-xl font-semibold mb-3 text-blue-200">{symbol}</h2>
 
       <div className="grid grid-cols-2 gap-2 text-sm">
         <div>Current Price</div>
