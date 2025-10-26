@@ -3,6 +3,7 @@ import { pool } from "../db.js";
 import getQuote from "../utils/getQuote.js";
 import getTimeseries from "../utils/getTimeseries.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import client from "../redis.js";
 
 const router = express.Router();
 
@@ -19,7 +20,22 @@ router.get("/history", async (req, res) => {
 router.get("/risk", async (req, res) => {
   const { company } = req.query;
   if (!company) return res.status(400).json({ error: "Company is required" });
+
+  const key = `ai:risk:${company.toUpperCase()}`;
+
   try {
+    // 1) Check Redis cache first
+    const cached = await client.get(key);
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        return res.json(parsed);
+      } catch {
+        // continue to regenerate if JSON parse fails
+      }
+    }
+
+    // 2) Cache miss → generate new response
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const result = await model.generateContent({
@@ -27,20 +43,34 @@ router.get("/risk", async (req, res) => {
         {
           role: "user",
           parts: [
-            { text: `Provide a concise investment risk analysis for ${company}. Use no more than 3 credible news or financial sources dated within the past 30 days. Focus on the company’s key financial, market, regulatory, and operational risks. Summarize your findings in 3–5 sentences.` }
-          ]
-        }
+            {
+              text: `Provide a concise investment analysis for ${company}. ` +
+                `Use no more than 3 credible news or financial sources dated within the past 30 days. ` +
+                `Focus on the company’s key financial, market, regulatory, and operational strengths and weaknesses. ` +
+                `Summarize your findings in 3–5 sentences.`,
+            },
+          ],
+        },
       ],
       tools: [{ googleSearch: {} }],
     });
 
-    const text = result.response.text();
+    const text = result.response.text() || "";
     const gm = result.response.candidates?.[0]?.groundingMetadata;
-    const sources = (gm?.groundingChunks || [])
-      .map(c => c.web && ({ title: c.web.title, url: c.web.uri }))
-      .filter(Boolean);
+    const sources =
+      (gm?.groundingChunks || [])
+        .map((c) =>
+          c.web ? { title: c.web.title || "", url: c.web.uri || "" } : null
+        )
+        .filter(Boolean)
+        .slice(0, 5) || [];
 
-    res.json({ text, sources });
+    const payload = { text, sources };
+
+    // 3) Cache result for 5 minutes (300 seconds)
+    await client.setEx(key, 300, JSON.stringify(payload));
+
+    res.json(payload);
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: e.message });

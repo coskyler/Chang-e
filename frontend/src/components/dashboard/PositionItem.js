@@ -8,7 +8,7 @@ const PositionItem = ({ name, symbol, price = 0, change = 0, shares = 0, value =
     <div className="border border-neutral-700 rounded-lg py-2 px-4 mb-2 grid grid-cols-4 gap-4">
       {/* Column 1: Name + Symbol */}
       <div className="flex flex-col">
-        <span className="text-lg font-semibold">{name || "—"}</span>
+        <span className="text-md font-semibold">{name || "—"}</span>
         <span className="text-sm text-blue-300">{symbol || ""}</span>
       </div>
 

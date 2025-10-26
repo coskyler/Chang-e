@@ -43,7 +43,7 @@ export default function TradePanel({price, symbol}) {
   }
 
   return (
-    <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 flex flex-col space-y-4">
+    <div className="space-y-4">
       {/* Header */}
       <div>
         <h2 className="text-xl font-semibold text-blue-400">Trade {symbol}</h2>

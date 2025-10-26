@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { SignOutButton, useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 const Navbar = () => {
   const [showLogout, setShowLogout] = useState(false);
@@ -10,7 +11,11 @@ const Navbar = () => {
   return (
     <nav className="relative w-full bg-black text-white px-10 py-4 flex items-center border-b border-neutral-800">
       {/* Title */}
-      <h1 className="text-2xl font-bold text-blue-400 mr-10">Chang&apos;e</h1>
+      <h1 className="text-2xl font-bold text-blue-400 mr-10">
+        <Link href="/dashboard" className="hover:text-blue-300 transition-colors">
+          Chang&apos;e
+        </Link>
+      </h1>
 
         {/* Search bar */}
         <div className="w-150">
