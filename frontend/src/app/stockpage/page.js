@@ -1,3 +1,4 @@
+import MyNews from "@/components/MyNews";
 import StockDetail from "@/components/StockDetail";
 import StockGraph from "@/components/StockGraph";
 
@@ -36,8 +37,8 @@ export default function StockPage() {
             <StockDetail {...test_stats} />
           </div>
         </div>
-        <div>
-          
+        <div className="width-full">
+          <MyNews />
         </div>
       </main>
     </div>
