@@ -38,7 +38,8 @@ export default function StockPage() {
           </div>
         </div>
         <div className="width-full">
-          <MyNews />
+          {/* Company Description */}
+          {/* Gemini News Synopsis */}
         </div>
       </main>
     </div>
