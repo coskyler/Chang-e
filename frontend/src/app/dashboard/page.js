@@ -3,22 +3,19 @@ import MyNews from "@/components/dashboard/MyNews";
 
 export default function Home() {
   return (
-    <div className="min-h-screen mt-5 px-10 bg-zinc-50 font-sans dark:bg-black">
-      <main className="min-h-screen w-full bg-white dark:bg-black">
-        <h1 className="text-4xl mb-10 font-semibold text-black dark:text-zinc-50">
-          Portfolio Dashboard</h1>
-          <div className="flex flex-col md:flex-row gap-6 w-full">
+      <main className="max-h-screen h-screen w-full p-10 flex flex-col flex-1 min-h-0">
+        <h1 className="text-5xl mb-7 font-semibold text-blue-200">Dashboard</h1>
+        <div className="flex flex-col md:flex-row gap-6 w-full flex-1 min-h-0">
             {/* Left column - Position Summary (1/3) */}
-            <div className="w-full md:w-1/3">
-              <PositionSummary />
+            <div className="w-full md:w-1/3 flex flex-col flex-1 min-h-0">
+                <PositionSummary />
             </div>
 
             {/* Right column - News (2/3) */}
-            <div className="w-full md:w-2/3 border border-red-300">
-              <MyNews />
+            <div className="w-full md:w-2/3 bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 flex flex-col min-h-0">
+                <MyNews />
             </div>
-          </div>
+        </div>
       </main>
-    </div>
   );
 }

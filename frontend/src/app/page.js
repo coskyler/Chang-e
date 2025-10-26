@@ -15,11 +15,11 @@ import {
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative min-h-screen overflow-hidden text-white">
       {/* Liquid background ABOVE the black bg, but BELOW content */}
       <div className="absolute inset-0 z-0">
         <Plasma
-          color="#0048ff"
+          color="#4479ff"
           speed={0.6}
           direction="forward"
           scale={1.1}

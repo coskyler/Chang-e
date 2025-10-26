@@ -1,27 +1,43 @@
 import React from 'react';
 
-const PositionItem = ({ symbol, value, shares, averagePrice }) => {
-    const currentPrice = value / shares;
-    const priceChange = ((currentPrice - averagePrice) / averagePrice) * 100;
-    const isPositiveChange = priceChange >= 0;
+const PositionItem = ({ name, symbol, price, averagePrice, shares }) => {
+  const value = shares * price;
+  const priceChange = ((price - averagePrice) / averagePrice) * 100;
+  const isPositiveChange = priceChange >= 0;
 
-    return (
-        <div className="bg-slate-800 py-2 px-4 rounded-lg position-item mb-2" style={{ display: 'flex', flexDirection: 'column', gap: '0px'}}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div className="stock-symbol text-xl font-bold">{symbol}</div>
-                <div className="position-value">${value.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
-            </div>
+  return (
+    <div className="border border-neutral-700 rounded-lg py-2 px-4 mb-2 grid grid-cols-4 gap-4">
+      {/* Column 1: Name + Symbol */}
+      <div className="flex flex-col">
+        <span className="text-lg font-semibold">{name}</span>
+        <span className="text-sm text-blue-300">{symbol}</span>
+      </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <div className={`value-change ${isPositiveChange ? 'positive' : 'negative'}`}>
-                    {isPositiveChange ? '+' : ''}{priceChange.toFixed(2)}%
-                </div>
-            </div>
-        </div>
-    );
+      {/* Column 2: Price + % Change */}
+      <div className="flex flex-col">
+        <span className="font-medium">
+          ${price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+        </span>
+        <span className={`${isPositiveChange ? "text-green-400" : "text-red-400"}`}>
+          {isPositiveChange ? "+" : ""}{priceChange.toFixed(2)}%
+        </span>
+      </div>
+
+      {/* Column 3: Shares */}
+      <div className="flex flex-col">
+        <span className="text-sm text-neutral-400">Shares</span>
+        <span className="font-medium">{Number(shares.toFixed(3))}</span>
+      </div>
+
+      {/* Column 4: Total Value */}
+      <div className="flex flex-col">
+        <span className="text-sm text-neutral-400">Value</span>
+        <span className="font-medium">
+          ${value.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+        </span>
+      </div>
+    </div>
+  );
 };
-// Took out shares and average price for now
-// <div className="position-shares">{shares} shares</div>
-// <div className="position-avg-price">Avg: ${averagePrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
 
 export default PositionItem;
