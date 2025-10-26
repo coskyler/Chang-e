@@ -1,6 +1,6 @@
 "use client";
 
-import StockChart from "@/components/StockChart";
+import StockChart from "@/components/quote/StockChart";
 import StockDetail from "@/components/quote/StockDetail";
 import StockGraph from "@/components/quote/StockGraph";
 import { useState, useEffect } from "react";
