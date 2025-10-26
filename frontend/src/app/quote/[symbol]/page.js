@@ -4,7 +4,6 @@ import Navbar from "@/components/navbar";
 import AnalysisPanel from "@/components/quote/AnalysisPanel";
 import StockChart from "@/components/quote/StockChart";
 import StockDetail from "@/components/quote/StockDetail";
-import StockGraph from "@/components/quote/StockGraph";
 import TradePanel from "@/components/quote/TradePanel";
 
 import { useState, useEffect } from "react";
@@ -57,7 +56,7 @@ export default function StockPage() {
         <div className="flex gap-3 w-full flex-1 min-h-0">
           {/* Left half: chart, must have h-full */}
           <div className="w-full max-w-[50vw] bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 overflow-hidden">
-            <StockChart />
+            <StockChart symbol={symbol} />
           </div>
 
           {/* Right half: column, must be flex-1 + min-h-0 to allow inner growth */}
