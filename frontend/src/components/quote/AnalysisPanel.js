@@ -2,7 +2,7 @@
 
 export default function AnalysisPanel() {
   return (
-    <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 space-y-4">
+    <>
       {/* Header + Risk Meter column */}
       <div className="flex justify-between items-start">
         {/* Analysis Section */}
@@ -27,6 +27,6 @@ export default function AnalysisPanel() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -46,21 +46,23 @@ export default function StockPage() {
   }, [symbol]);
 
   return (
-    <main className="min-h-screen w-full">
-      <Navbar />
-      <div className="p-10">
-        <h1 className="text-5xl mb-7 font-semibold text-white">
-          {symbol} Overview
-        </h1>
+    <main className="min-h-screen w-full flex flex-col"> {/* <-- flex column */}
+      <Navbar /> {/* stays shrink-0 by default */}
 
-        <div className="flex gap-3 w-full">
-          {/* Left 1/2: Graph placeholder */}
-          <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 max-w-[50vw] overflow-hidden">
+      {/* content area fills remaining height */}
+      <div className="p-10 flex-1 flex flex-col min-h-0">
+        <h1 className="text-5xl mb-7 font-semibold text-white">{symbol} Overview</h1>
+
+        {/* main row fills remaining height */}
+        <div className="flex gap-3 w-full flex-1 min-h-0">
+          {/* Left half: chart, must have h-full */}
+          <div className="w-full max-w-[50vw] bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 overflow-hidden">
             <StockChart />
           </div>
 
-          {/* Right 1/2: Stock details */}
-          <div className="flex flex-col w-full gap-2">
+          {/* Right half: column, must be flex-1 + min-h-0 to allow inner growth */}
+          <div className="flex flex-col w-full gap-2 flex-1 min-h-0">
+            {/* Top row: details + trade; let it be auto height */}
             <div className="flex gap-2 w-full">
               <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800">
                 <StockDetail
@@ -77,11 +79,19 @@ export default function StockPage() {
                 />
               </div>
 
-              <TradePanel price={price} symbol={symbol} />
+              {/* Wrap TradePanel so it has consistent styling and height behavior */}
+              <div className="bg-neutral-900/75 rounded-lg p-4 border border-neutral-800">
+                <TradePanel price={price} symbol={symbol} />
+              </div>
             </div>
-            <AnalysisPanel />
+
+            {/* Make AnalysisPanel occupy remaining vertical space */}
+            <div className="flex-1 min-h-0 bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 overflow-auto">
+              <AnalysisPanel />
+            </div>
           </div>
         </div>
+
         <div className="w-full">{/* Company Description / News */}</div>
       </div>
     </main>

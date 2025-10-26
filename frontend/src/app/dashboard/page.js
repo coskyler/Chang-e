@@ -1,3 +1,5 @@
+"use client";
+
 import PositionSummary from "@/components/dashboard/PositionSummary";
 import MyNews from "@/components/dashboard/MyNews";
 import Navbar from "@/components/navbar";
