@@ -9,13 +9,13 @@ import {
   CurrentCoordinate, OHLCTooltip, MovingAverageTooltip, MACDSeries,
   discontinuousTimeScaleProviderBuilder, ema, sma, macd, last, withSize
 } from "react-stockcharts3";
-
-// import { wtihSize } from "react-stockcharts3/lib/utils";
-
+import { useParams } from "next/navigation";
 
 import { getData } from "@/utils/stockData";
 
-function StockChart({ symbol = "MSFT", width = 800, ratio = 3, type = "svg" }) {
+function StockChart({ width = 800, ratio = 3, type = "svg" }) {
+  const params = useParams();
+  const symbol = (params?.symbol || "MSFT").toUpperCase();
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function StockChart({ symbol = "MSFT", width = 800, ratio = 3, type = "svg" }) {
     <ChartCanvas
       height={600} width={width} ratio={ratio}
       margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
-      type={type} seriesName="MSFT"
+      type={type} seriesName={symbol}
       data={chartData} xScale={xScale} xAccessor={xAccessor} displayXAccessor={displayXAccessor} xExtents={xExtents}
     >
       <Chart id={1} height={400} yExtents={[d => [d.high, d.low], ema26.accessor(), ema12.accessor()]} padding={{ top: 10, bottom: 20 }}>

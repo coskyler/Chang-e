@@ -4,7 +4,6 @@ import Navbar from "@/components/navbar";
 import AnalysisPanel from "@/components/quote/AnalysisPanel";
 import StockChart from "@/components/quote/StockChart";
 import StockDetail from "@/components/quote/StockDetail";
-import StockGraph from "@/components/quote/StockGraph";
 import TradePanel from "@/components/quote/TradePanel";
 
 import { useState, useEffect } from "react";
