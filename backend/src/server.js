@@ -17,6 +17,7 @@ app.use(clerkMiddleware());
 
 // Protect all routes below
 app.use(requireAuth());
+app.use(express.json());
 
 // Routes (all protected)
 app.use("/stock", stockRoutes);
