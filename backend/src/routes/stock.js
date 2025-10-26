@@ -1,12 +1,51 @@
 import express from "express";
 import { pool } from "../db.js";
 import getQuote from "../utils/getQuote.js";
+import getTimeseries from "../utils/getTimeseries.js";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const router = express.Router();
 
-router.get("/history", (req, res) => { });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-router.get("/risk", (req, res) => { });
+router.get("/history", async (req, res) => {
+  const symbol = req.query.symbol?.toUpperCase();
+  if (!symbol) return res.status(400).json({ error: "Missing ?symbol" });
+
+  const candles = await getTimeseries(symbol);
+  res.json(candles);
+});
+
+router.get("/risk", async (req, res) => {
+  const { company } = req.query;
+  if (!company) return res.status(400).json({ error: "Company is required" });
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+    const result = await model.generateContent({
+      contents: [
+        {
+          role: "user",
+          parts: [
+            { text: `Provide a concise investment risk analysis for ${company}. Use no more than 3 credible news or financial sources dated within the past 30 days. Focus on the company’s key financial, market, regulatory, and operational risks. Summarize your findings in 3–5 sentences.` }
+          ]
+        }
+      ],
+      tools: [{ googleSearch: {} }],
+    });
+
+    const text = result.response.text();
+    const gm = result.response.candidates?.[0]?.groundingMetadata;
+    const sources = (gm?.groundingChunks || [])
+      .map(c => c.web && ({ title: c.web.title, url: c.web.uri }))
+      .filter(Boolean);
+
+    res.json({ text, sources });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: e.message });
+  }
+});
 
 router.get("/details", async (req, res) => {
   const { symbol } = req.query;
