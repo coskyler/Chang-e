@@ -4,16 +4,30 @@ import getQuote from "../utils/getQuote.js";
 
 const router = express.Router();
 
-
-async function getOverview(quote) {
-
-}
-
-router.get("/info", (req, res) => { });
+router.get("/history", (req, res) => { });
 
 router.get("/risk", (req, res) => { });
 
-router.get("/overview", async (req, res) => { });
+router.get("/details", async (req, res) => {
+  const { symbol } = req.query;
+  if (!symbol) return res.status(400).json({ error: "Symbol is required" });
+
+  const fields = [
+    "symbol",
+    "open",
+    "high",
+    "low",
+    "price",
+    "volume",
+    "latestTradingDay",
+    "previousClose",
+    "change",
+    "changePercent",
+  ];
+
+  const data = await getQuote(symbol, fields);
+  res.json(data);
+});
 
 
 router.post("/buy", async (req, res) => {

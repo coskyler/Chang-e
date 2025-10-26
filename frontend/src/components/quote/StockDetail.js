@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 const fmtCurrency = (n) => {
@@ -14,55 +12,51 @@ const fmtNumber = (n) => {
 
 const StockDetail = ({
   symbol = '-',
-  currentPrice = 0,
-  allTimeHigh = 0,
-  allTimeLow = 0,
+  price = 0,
   open = 0,
-  close = 0,
+  high = 0,
+  low = 0,
   volume = 0,
-  marketCap = 0,
-  peRatio = null,
-  dividendYield = null,
-  fiftyTwoWeekHigh = 0,
-  fiftyTwoWeekLow = 0,
+  latestTradingDay = '-',
+  previousClose = 0,
+  change = 0,
+  changePercent = 0, // numeric (e.g., 0.59 for 0.59%)
 }) => {
   return (
     <div>
       <h2 className="text-xl font-semibold mb-3 text-blue-200">{symbol}</h2>
 
       <div className="grid grid-cols-2 gap-2 text-sm">
-        <div>Current Price</div>
-        <div className="text-right">${fmtCurrency(currentPrice)}</div>
+        <div>Price</div>
+        <div className="text-right">${fmtCurrency(price)}</div>
 
         <div>Open</div>
         <div className="text-right">${fmtCurrency(open)}</div>
 
-        <div>Close</div>
-        <div className="text-right">${fmtCurrency(close)}</div>
+        <div>Previous Close</div>
+        <div className="text-right">${fmtCurrency(previousClose)}</div>
 
-        <div>All-time High</div>
-        <div className="text-right">${fmtCurrency(allTimeHigh)}</div>
+        <div>Day High</div>
+        <div className="text-right">${fmtCurrency(high)}</div>
 
-        <div>All-time Low</div>
-        <div className="text-right">${fmtCurrency(allTimeLow)}</div>
+        <div>Day Low</div>
+        <div className="text-right">${fmtCurrency(low)}</div>
 
-        <div>52wk High</div>
-        <div className="text-right">${fmtCurrency(fiftyTwoWeekHigh)}</div>
+        <div>Change</div>
+        <div className="text-right">${fmtCurrency(change)}</div>
 
-        <div>52wk Low</div>
-        <div className="text-right">${fmtCurrency(fiftyTwoWeekLow)}</div>
+        <div>Change %</div>
+        <div className="text-right">
+          {typeof changePercent === 'number' && !Number.isNaN(changePercent)
+            ? `${changePercent.toFixed(2)}%`
+            : '-'}
+        </div>
+
+        <div>Latest Trading Day</div>
+        <div className="text-right">{latestTradingDay || '-'}</div>
 
         <div>Volume</div>
         <div className="text-right">{fmtNumber(volume)}</div>
-
-        <div>Market Cap</div>
-        <div className="text-right">${fmtNumber(marketCap)}</div>
-
-        <div>P/E Ratio</div>
-        <div className="text-right">{peRatio == null ? '-' : String(peRatio)}</div>
-
-        <div>Dividend Yield</div>
-        <div className="text-right">{dividendYield == null ? '-' : (dividendYield * 100).toFixed(2) + '%'}</div>
       </div>
     </div>
   );

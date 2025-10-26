@@ -40,7 +40,7 @@ export default async function getQuote(quote, fields = ["price", "change"]) {
 
   // merge with any cached fields and store updated entry for 1 minute
   const updated = { ...(cached || {}), ...result };
-  await client.setEx(key, 60, JSON.stringify(updated));
+  await client.setEx(key, 600, JSON.stringify(updated));
 
   return result;
 }
