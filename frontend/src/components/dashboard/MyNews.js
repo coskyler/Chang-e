@@ -57,7 +57,7 @@ const MyNews = () => {
 
     return (
     <div className="flex flex-col min-h-0 flex-1">
-        <h1 className="text-2xl font-semibold text-blue-200 mb-4">Relevant News</h1>
+        <h1 className="text-2xl font-semibold text-blue-400 mb-4">Relevant News</h1>
         <div className="flex flex-col lex-1 overflow-y-auto pr-2 min-h-0">
             {newsItems.map((item) => (
                 <NewsItem

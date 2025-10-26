@@ -46,7 +46,7 @@ export default function TradePanel({price, symbol}) {
     <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 flex flex-col space-y-4">
       {/* Header */}
       <div>
-        <h2 className="text-xl font-semibold text-blue-200">Trade {symbol}</h2>
+        <h2 className="text-xl font-semibold text-blue-400">Trade {symbol}</h2>
         <div className="text-neutral-300 text-sm mt-1">
           Market Price: <span className="text-white font-semibold">${price.toFixed(2)}</span>
         </div>

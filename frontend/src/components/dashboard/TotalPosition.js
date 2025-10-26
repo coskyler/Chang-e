@@ -19,7 +19,7 @@ const TotalPosition = ({ totalValue = 0, totalChange = 0 }) => {
 
   return (
     <div className="bg-neutral-900/75 rounded-lg p-4 border border-neutral-800">
-      <h1 className="text-2xl font-semibold text-blue-200 pb-6">Balance</h1>
+      <h1 className="text-2xl font-semibold text-blue-400 pb-6">Balance</h1>
       <div className="font-semibold text-4xl mb-2">
         ${formattedValue}
       </div>

@@ -7,7 +7,7 @@ export default function AnalysisPanel() {
       <div className="flex justify-between items-start">
         {/* Analysis Section */}
         <div className="flex-1 pr-4">
-          <h2 className="text-xl font-semibold text-white">Analysis</h2>
+          <h2 className="text-xl font-semibold text-blue-400">Analysis</h2>
           <p className="text-neutral-400 text-sm mt-1">
             This section provides insights into the stock’s recent performance,
             volatility, and sentiment trends to help guide trading decisions.

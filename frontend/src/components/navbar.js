@@ -34,7 +34,7 @@ const Navbar = () => {
         className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center border border-neutral-700 cursor-pointer relative"
         onClick={() => setShowLogout((prev) => !prev)}
       >
-        <span className="text-sm font-semibold text-blue-300">{user?.firstName?.[0] || "?"}</span>
+        <span className="text-sm font-semibold text-blue-400">{user?.firstName?.[0] || "?"}</span>
 
         {/* Logout popup */}
         {showLogout && (

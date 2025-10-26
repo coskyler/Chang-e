@@ -49,7 +49,7 @@ export default function StockPage() {
     <main className="min-h-screen w-full">
       <Navbar />
       <div className="p-10">
-        <h1 className="text-5xl mb-7 font-semibold text-blue-200">
+        <h1 className="text-5xl mb-7 font-semibold text-white">
           {symbol} Overview
         </h1>
 
