@@ -1,5 +1,5 @@
-import PositionSummary from "@/components/PositionSummary";
-import MyNews from "@/components/MyNews";
+import PositionSummary from "@/components/dashboard/PositionSummary";
+import MyNews from "@/components/dashboard/MyNews";
 
 export default function Home() {
   return (

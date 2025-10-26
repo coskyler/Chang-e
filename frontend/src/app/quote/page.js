@@ -1,6 +1,6 @@
-import MyNews from "@/components/MyNews";
-import StockDetail from "@/components/StockDetail";
-import StockGraph from "@/components/StockGraph";
+import MyNews from "@/components/dashboard/MyNews";
+import StockDetail from "@/components/quote/StockDetail";
+import StockGraph from "@/components/quote/StockGraph";
 
 export default function StockPage() {
   const test_stats = {
