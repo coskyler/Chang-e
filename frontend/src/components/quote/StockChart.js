@@ -7,12 +7,15 @@ import {
   ChartCanvas, Chart, CandlestickSeries, LineSeries, BarSeries, AreaSeries,
   XAxis, YAxis, EdgeIndicator, MouseCoordinateX, MouseCoordinateY, CrossHairCursor,
   CurrentCoordinate, OHLCTooltip, MovingAverageTooltip, MACDSeries,
-  discontinuousTimeScaleProviderBuilder, ema, sma, macd, last
+  discontinuousTimeScaleProviderBuilder, ema, sma, macd, last, withSize
 } from "react-stockcharts3";
+
+// import { wtihSize } from "react-stockcharts3/lib/utils";
+
 
 import { getData } from "@/utils/stockData";
 
-export default function StockChart({ width = 800, ratio = 3, type = "svg" }) {
+function StockChart({ width = 800, ratio = 3, type = "svg" }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -86,3 +89,5 @@ export default function StockChart({ width = 800, ratio = 3, type = "svg" }) {
     </ChartCanvas>
   );
 }
+
+export default withSize()(StockChart);
