@@ -15,16 +15,16 @@ import {
 
 import { getData } from "@/utils/stockData";
 
-function StockChart({ width = 800, ratio = 3, type = "svg" }) {
+function StockChart({ symbol = "MSFT", width = 800, ratio = 3, type = "svg" }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     async function fetchChartData() {
-      const chartData = await getData();
+      const chartData = await getData(symbol);
       setData(chartData);
     }
     fetchChartData();
-  }, []);
+  }, [symbol]);
 
   if (!data) return <div>Loading stock data...</div>;
 

@@ -34,7 +34,7 @@ export default function StockPage() {
         <div className="flex gap-3 w-full">
           {/* Left 1/2: Graph placeholder */}
           <div className="w-full bg-neutral-900/75 rounded-lg p-4 border border-neutral-800 max-w-[50vw] overflow-hidden">
-            <StockChart />
+            <StockChart symbol={test_stats.symbol} />
           </div>
 
           {/* Right 1/2: Stock details */}
