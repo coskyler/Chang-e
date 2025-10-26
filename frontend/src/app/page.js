@@ -36,7 +36,7 @@ export default function Home() {
         <div className="flex gap-6">
           <a
             href="/sign-in"
-            class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition"
+            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition"
           >
             Get Started
           </a>
