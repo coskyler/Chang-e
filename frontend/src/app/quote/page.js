@@ -3,8 +3,6 @@
 import StockChart from "@/components/quote/StockChart";
 import StockDetail from "@/components/quote/StockDetail";
 import StockGraph from "@/components/quote/StockGraph";
-import { useState, useEffect } from "react";
-import { getData } from "@/utils/stockData";
 
 export default function StockPage() {
   const test_stats = {
@@ -21,22 +19,6 @@ export default function StockPage() {
     fiftyTwoWeekHigh: 182.94,
     fiftyTwoWeekLow: 129.04,
   };
-
-  
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const chartData = await getData();
-      setData(chartData);
-    }
-    fetchData();
-  }, []);
-
-  if (!data) {
-    return <div>Loading stock data...</div>;
-  }
-  
   
   return (
     <div className="min-h-screen mt-5 px-10 font-sans dark:bg-black">
@@ -48,7 +30,7 @@ export default function StockPage() {
         <div className="flex flex-col md:flex-row gap-6 w-full">
           {/* Left 1/2: Graph placeholder */}
           <div className="w-full md:w-1/2">
-            <StockChart data={data} width={800} />
+            <StockChart />
           </div>
 
           {/* Right 1/2: Stock details */}
