@@ -1,5 +1,4 @@
 import React from 'react';
-import '../app/globals.css'
 
 const PositionItem = ({ symbol, value, shares, averagePrice }) => {
     const currentPrice = value / shares;
