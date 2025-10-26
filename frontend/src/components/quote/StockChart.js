@@ -57,7 +57,7 @@ function StockChart({ width = 800, ratio = 3, type = "svg" }) {
         <XAxis axisAt="bottom" orient="bottom" showTicks={false} outerTickSize={0} tickStrokeStyle="#FFFFFF" strokeStyle="#FFFFFF" tickLabelFill="#FFFFFF"/>
         <YAxis axisAt="right" orient="right" ticks={5} tickStrokeStyle="#FFFFFF" strokeStyle="#FFFFFF" tickLabelFill="#FFFFFF"/>
         <MouseCoordinateY at="right" orient="right" displayFormat={format(".2f")} />
-        {/* <CandlestickSeries /> */}
+        <CandlestickSeries />
         <LineSeries yAccessor={ema12.accessor()} stroke={ema12.stroke()} />
         <CurrentCoordinate yAccessor={ema12.accessor()} fill={ema12.stroke()} />
         <EdgeIndicator itemType="last" orient="right" edgeAt="right" yAccessor={d => d.close} fill={d => d.close > d.open ? "#6BA583" : "#FF0000"} />
