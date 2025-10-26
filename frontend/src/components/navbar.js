@@ -10,14 +10,20 @@ const Navbar = () => {
       {/* Title */}
       <h1 className="text-2xl font-bold text-blue-400 mr-10">Chang&apos;e</h1>
 
-      {/* Search bar */}
-      <div className="w-150">
+        {/* Search bar */}
+        <div className="w-150">
         <input
-          type="text"
-          placeholder="Search..."
-          className="w-full bg-neutral-900 text-white rounded-lg px-4 py-2 outline-none border border-neutral-700 focus:border-blue-400"
+            type="text"
+            placeholder="Search..."
+            className="w-full bg-neutral-900 text-white rounded-lg px-4 py-2 outline-none border border-neutral-700 focus:border-blue-400"
+            onKeyDown={(e) => {
+            if (e.key === "Enter" && e.target.value.trim()) {
+                window.location.href = `/quote/${e.target.value.trim().toUpperCase()}`;
+            }
+            }}
         />
-      </div>
+        </div>
+
 
       <div className="flex-1" />
 

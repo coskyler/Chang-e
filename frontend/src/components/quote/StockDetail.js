@@ -27,7 +27,7 @@ const StockDetail = ({
   fiftyTwoWeekLow = 0,
 }) => {
   return (
-    <div className="stock-detail rounded-lg shadow p-4">
+    <div>
       <h2 className="text-xl font-semibold mb-3">{symbol}</h2>
 
       <div className="grid grid-cols-2 gap-2 text-sm">
