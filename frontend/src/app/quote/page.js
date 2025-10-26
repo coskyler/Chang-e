@@ -1,6 +1,10 @@
-import MyNews from "@/components/dashboard/MyNews";
+"use client";
+
+import StockChart from "@/components/StockChart";
 import StockDetail from "@/components/quote/StockDetail";
 import StockGraph from "@/components/quote/StockGraph";
+import { useState, useEffect } from "react";
+import { getData } from "@/utils/stockData";
 
 export default function StockPage() {
   const test_stats = {
@@ -17,18 +21,34 @@ export default function StockPage() {
     fiftyTwoWeekHigh: 182.94,
     fiftyTwoWeekLow: 129.04,
   };
+
+  
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const chartData = await getData();
+      setData(chartData);
+    }
+    fetchData();
+  }, []);
+
+  if (!data) {
+    return <div>Loading stock data...</div>;
+  }
+  
   
   return (
     <div className="min-h-screen mt-5 px-10 font-sans dark:bg-black">
       <main className="min-h-screen w-full bg-white dark:bg-black">
         <h1 className="text-4xl mb-6 font-semibold text-black dark:text-zinc-50">
-          Stock: {test_stats.symbol}
+          Stock1: {test_stats.symbol}
         </h1>
 
         <div className="flex flex-col md:flex-row gap-6 w-full">
           {/* Left 1/2: Graph placeholder */}
           <div className="w-full md:w-1/2">
-            <StockGraph ticker={test_stats.symbol} />
+            <StockChart data={data} width={800} />
           </div>
 
           {/* Right 1/2: Stock details */}
@@ -37,7 +57,7 @@ export default function StockPage() {
             <StockDetail {...test_stats} />
           </div>
         </div>
-        <div className="width-full">
+        <div className="w-full">
           {/* Company Description */}
           {/* Gemini News Synopsis */}
         </div>
