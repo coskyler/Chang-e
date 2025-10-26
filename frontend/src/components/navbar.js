@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
-import { SignOutButton } from "@clerk/nextjs";
+import { SignOutButton, useUser } from "@clerk/nextjs";
 
 const Navbar = () => {
   const [showLogout, setShowLogout] = useState(false);
+
+  const { user } = useUser();
 
   return (
     <nav className="relative w-full bg-black text-white px-10 py-4 flex items-center border-b border-neutral-800">
@@ -32,7 +34,7 @@ const Navbar = () => {
         className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center border border-neutral-700 cursor-pointer relative"
         onClick={() => setShowLogout((prev) => !prev)}
       >
-        <span className="text-sm font-semibold text-blue-300">S</span>
+        <span className="text-sm font-semibold text-blue-300">{user?.firstName?.[0] || "?"}</span>
 
         {/* Logout popup */}
         {showLogout && (

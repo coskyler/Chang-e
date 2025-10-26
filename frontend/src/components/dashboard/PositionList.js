@@ -10,11 +10,12 @@ const PositionList = ({ positions }) => {
           positions.map((position) => (
             <PositionItem
             key={position.symbol}
-            name={position.name}
             symbol={position.symbol}
-            price={position.price}
-            averagePrice={position.averagePrice}
+            name={position.name}
             shares={position.shares}
+            price={position.price}
+            change={position.change}
+            value={position.value}
             />
           ))}
       </div>

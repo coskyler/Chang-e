@@ -1,19 +1,8 @@
 import express from "express";
 import { pool } from "../db.js";
+import getQuote from "../utils/getQuote.js";
 
 const router = express.Router();
-
-async function getQuote(quote) {
-  const res = await fetch(
-    `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${quote}&apikey=${process.env.VANTAGE_API_KEY}`
-  );
-  const data = await res.json();
-  const q = data["Global Quote"];
-  return {
-    price: parseFloat(q["05. price"]),
-    change: parseFloat(q["09. change"]),
-  };
-}
 
 
 async function getOverview(quote) {
@@ -34,7 +23,7 @@ router.post("/buy", async (req, res) => {
   console.log(req.auth);
   const { quote, number } = req.body;
 
-  const global = await getQuote(quote);
+  const global = await getQuote(quote, ["price", "change"]);
   console.log('\n\n\n TICKER RESULTS: ', global);
   if (!global || !global.price) throw new Error("Price not available for this symbol");
 
@@ -60,7 +49,7 @@ router.post("/sell", async (req, res) => {
   const userId = req.auth.userId;
   const { quote, number } = req.body;
 
-  const global = await getQuote(quote);
+  const global = await getQuote(quote, ["price", "change"]);
   if (!global || !global.price) throw new Error("Price not available for this symbol");
 
   const price = global.price;

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const PositionItem = ({ name, symbol, price, averagePrice, shares }) => {
-  const value = shares * price;
-  const priceChange = ((price - averagePrice) / averagePrice) * 100;
+const PositionItem = ({ name, symbol, price, change, shares, value }) => {
+  const priceChange = (change / (price - change)) * 100;
+
   const isPositiveChange = priceChange >= 0;
 
   return (
