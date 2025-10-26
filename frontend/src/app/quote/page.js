@@ -1,10 +1,9 @@
 "use client";
 
-// import MyNews from "@/components/MyNews";
+import MyNews from "@/components/MyNews";
 import StockChart from "@/components/StockChart";
 import StockDetail from "@/components/StockDetail";
 import StockGraph from "@/components/StockGraph";
-import TestChart from "@/components/TestChart"
 import { useState, useEffect } from "react";
 import { getData } from "@/utils/stockData";
 
