@@ -1,17 +1,8 @@
-// app/page.js
+/* eslint-disable @next/next/no-html-link-for-pages */
+
 "use client";
 
 import Plasma from "@/components/Plasma";
-
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignIn,
-  SignUp,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs";
 
 export default function Home() {
   return (
@@ -30,7 +21,7 @@ export default function Home() {
 
       {/* Foreground content */}
       <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
-        <h1 className="mb-4 text-7xl md:text-9xl font-extrabold tracking-tight">
+        <h1 className="mb-10 text-7xl md:text-9xl font-extrabold tracking-tight">
           Chang&apos;e
         </h1>
         <p className="mb-12 text-lg text-neutral-300">
