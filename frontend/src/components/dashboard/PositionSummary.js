@@ -28,7 +28,7 @@ const PositionSummary = () => {
             setNetChange(data.netChange || 0);
         }
         fetchPortfolio();
-    }, []);
+    }, [getToken]);
 
 
     return (

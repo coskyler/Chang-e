@@ -45,7 +45,7 @@ export default function AnalysisPanel() {
     return () => {
       aborted = true;
     };
-  }, [symbol]);
+  }, [symbol, getToken]);
 
   return (
     <div className="flex flex-col">

@@ -31,7 +31,7 @@ const MyNews = () => {
     }
 
     fetchNews();
-  }, []);
+  }, [getToken]);
 
   if (loading) {
     return <p className="text-neutral-400">Loading news...</p>;
