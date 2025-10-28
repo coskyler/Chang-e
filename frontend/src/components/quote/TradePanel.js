@@ -31,6 +31,7 @@ export default function TradePanel({price, symbol}) {
         credentials: "include",
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
             Accept: "application/json",
           },
         body: JSON.stringify({
