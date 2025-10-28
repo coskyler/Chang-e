@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 
 export default function AnalysisPanel() {
   const { symbol } = useParams();
@@ -9,18 +10,24 @@ export default function AnalysisPanel() {
   const [err, setErr] = useState("");
   const [text, setText] = useState("");
   const [sources, setSources] = useState([]);
+  const { getToken } = useAuth();
 
   useEffect(() => {
     let aborted = false;
 
     async function run() {
+      const token = await getToken();
       setLoading(true);
       setErr("");
       try {
         const url = `${process.env.NEXT_PUBLIC_API_DOMAIN}/stock/risk?company=${encodeURIComponent(
           String(symbol || "")
         )}`;
-        const res = await fetch(url, { credentials: "include" });
+        const res = await fetch(url, { credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          } });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         if (!aborted) {

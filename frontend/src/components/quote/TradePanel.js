@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useAuth } from "@clerk/nextjs";
 
 export default function TradePanel({price, symbol}) {
   const [tradeType, setTradeType] = useState("buy");
@@ -8,6 +9,7 @@ export default function TradePanel({price, symbol}) {
   const [amount, setAmount] = useState("");
   const [btnText, setBtnText] = useState("Trade");
   const [submitting, setSubmitting] = useState(false);
+  const { getToken } = useAuth();
 
   const API_DOMAIN = process.env.NEXT_PUBLIC_API_DOMAIN;
 
@@ -20,12 +22,17 @@ export default function TradePanel({price, symbol}) {
     const quantity = method === "price" ? numeric / Number(price) : numeric;
 
     try {
+      const token = await getToken();
       setSubmitting(true);
       setBtnText("Loading...");
         const res = await fetch(`${API_DOMAIN}/stock/${tradeType}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
         body: JSON.stringify({
             quote: symbol,
             number: quantity

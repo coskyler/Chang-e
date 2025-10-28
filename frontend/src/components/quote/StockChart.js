@@ -12,19 +12,21 @@ import {
 import { useParams } from "next/navigation";
 
 import { getData } from "@/utils/stockData";
+import { useAuth } from "@clerk/nextjs";
 
 function StockChart({ width = 800, ratio = 3, type = "svg" }) {
+  const { getToken } = useAuth();
   const params = useParams();
   const symbol = (params?.symbol || "MSFT").toUpperCase();
   const [data, setData] = useState(null);
 
   useEffect(() => {
     async function fetchChartData() {
-      const chartData = await getData(symbol);
+      const chartData = await getData(symbol, getToken);
       setData(chartData);
     }
     fetchChartData();
-  }, [symbol]);
+  }, [symbol, getToken]);
 
   if (!data) return <div>Loading stock data...</div>;
 

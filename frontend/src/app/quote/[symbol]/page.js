@@ -5,12 +5,14 @@ import AnalysisPanel from "@/components/quote/AnalysisPanel";
 import StockChart from "@/components/quote/StockChart";
 import StockDetail from "@/components/quote/StockDetail";
 import TradePanel from "@/components/quote/TradePanel";
+import { useAuth } from "@clerk/nextjs";
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 
 export default function StockPage() {
   const { symbol } = useParams();
+  const { getToken } = useAuth();
 
   const [open, setOpen] = useState(0);
   const [high, setHigh] = useState(0);
@@ -24,9 +26,16 @@ export default function StockPage() {
 
   useEffect(() => {
     async function fetchDetails() {
+      
+    const token = await getToken();
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_DOMAIN}/stock/details?symbol=${symbol}`,
-        { credentials: "include" }
+        { credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          }
+        }
       );
       const data = await res.json();
 
@@ -42,7 +51,7 @@ export default function StockPage() {
     }
 
     fetchDetails();
-  }, [symbol]);
+  }, [symbol, getToken]);
 
   return (
     <main className="min-h-screen w-full flex flex-col pb-25"> {/* <-- flex column */}

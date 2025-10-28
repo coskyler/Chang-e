@@ -2,16 +2,24 @@
 
 import React, { useEffect, useState } from "react";
 import NewsItem from "./NewsItem";
+import { useAuth } from "@clerk/nextjs";
 
 const MyNews = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { getToken } = useAuth();
 
   useEffect(() => {
     async function fetchNews() {
+      const token = await getToken();
+
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/user/news`, {
           credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          }
         });
         const data = await res.json();
         setNews(data.news || []);

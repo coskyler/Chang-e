@@ -2,6 +2,7 @@
 
 import { tsvParse } from "d3-dsv";
 import { timeParse } from "d3-time-format";
+import { useAuth } from "@clerk/nextjs";
 
 const parseDate = timeParse("%Y-%m-%d");
 
@@ -29,11 +30,19 @@ export function parseData2(parse = parseDate) {
   };
 }
 
-export const getData = async (symbol) => {
+export const getData = async (symbol, getToken) => {
+
+  
+  const token = await getToken();
+  
   console.log(symbol);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_DOMAIN}/stock/history?symbol=${symbol}`,
-    { credentials: "include" }
+    { credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          } }
   );
   const raw = await response.json();
 
