@@ -1,7 +1,9 @@
 # Chang’e
 
 **Chang’e** is a full-stack **paper trading web app** that lets users simulate investing with **real-time stock data** and **AI-driven financial analysis**.  
-It integrates **AlphaVantage** for live market data and **Gemini Flash (with grounding)** to retrieve and summarize recent, credible financial news relevant to each portfolio.  
+
+It integrates **AlphaVantage** for live market data and **Gemini Flash (with grounding)** to retrieve, summarize, and cite recent, credible financial news relevant to each portfolio.  
+
 Authentication is handled by **Clerk**, and the entire system is containerized and reverse-proxied for production deployment.
 
 ---
@@ -18,7 +20,7 @@ Authentication is handled by **Clerk**, and the entire system is containerized a
 ## Features
 
 - **Real-Time Stock Data** from AlphaVantage  
-- **Paper Trading Engine** with portfolio tracking  
+- **Paper Trading** with portfolio tracking  
 - **Gemini Flash AI Insights** (grounded, source-linked)  
 - **Secure Authentication** via Clerk  
 - **Redis Caching** for Gemini API responses  
@@ -38,7 +40,7 @@ Authentication is handled by **Clerk**, and the entire system is containerized a
 | **Caching** | Redis |
 | **AI** | Google Gemini Flash (Grounded) |
 | **Data Source** | AlphaVantage API |
-| **Infrastructure** | Docker, Nginx, Vercel |
+| **Infrastructure** | Docker, Nginx, DigitalOcean, Vercel |
 
 ---
 
